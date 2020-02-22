@@ -15,11 +15,17 @@ Displays remaining bag space, or used/total.
 ### Bank
 Displays the amount of gold in your bank.
 
+### Bank Space
+Displays the amount of space in your bank.
+
 ### Champion Points
 Displays the number of Champion points earned (after level 50), and a percentage to the next level.  Can also display allocated/earned.
 
 ### Durability
 Displays a warning when an armor item falls below a specified threshold.
+
+### Enlightenment
+Show how much enlightenment you have.
 
 ### Food & Drink Buff Timer
 Displays a timer of how long until the food or drink buff runs out.  Also can be set to only display when a buff is missing.
@@ -29,6 +35,9 @@ Displays the amount of gold in your inventory.
 
 ### Mount Training Timer
 Displays a timer of how long until you can train your mount.  Also can be set to only display when the timer expires.
+
+### Quests
+Display the number of quests you have.
 
 ### Research Timer
 Displays available research slots.
