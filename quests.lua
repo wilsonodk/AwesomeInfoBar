@@ -15,7 +15,6 @@ AIB.defaults["Quests"] = {
   alwaysOn            = true,
   warning             = 10,       -- amount
   critical            = 6,        -- amount
-  questLimit          = 25,       -- current limit on quests
 }
 
 ----------------------------------------------------
@@ -87,12 +86,10 @@ AIB.plugins["Quests"] = {
       local header, value = "",""
       local isWarning, isCritical = false, false
 
-      -- max number of quests
-      local maxQuests = AIB.defaults.Quests.questLimit
       -- current number of quests
       local numQuests = GetNumJournalQuests()
       -- quests remaining
-      local remainingQuests = maxQuests - numQuests
+      local remainingQuests = MAX_JOURNAL_QUESTS - numQuests
 
       -- set warnings
       if (remainingQuests <= AIB.saved.account.Quests.warning) then
@@ -165,7 +162,7 @@ AIB.plugins.Quests.Menu = {
         name      = "Low remaining Quest count "..AIB.colors.yellow.."warning|r",
         tooltip   = "If remaining number of quests is this many or less, you will see a warning",
         min       = 1,
-        max       = AIB.defaults.Quests.questLimit,
+        max       = MAX_JOURNAL_QUESTS,
         getFunc   = function() return AIB.saved.account.Quests.warning end,
         setFunc   = function(newValue) AIB.saved.account.Quests.warning = newValue; AIB.plugins.Quests.UpdateQuests() end,
         disabled  = function() return AIB.saved.account.Quests.alwaysOn end,
@@ -176,7 +173,7 @@ AIB.plugins.Quests.Menu = {
         name      = "Low remaining Quest count"..AIB.colors.red.."critical warning|r",
         tooltip   = "If remaining number of quests is this many or less, you will see a critical warning.",
         min       = 1,
-        max       = AIB.defaults.Quests.questLimit,
+        max       = MAX_JOURNAL_QUESTS,
         getFunc   = function() return AIB.saved.account.Quests.critical end,
         setFunc   = function(newValue) AIB.saved.account.Quests.critical = newValue; AIB.plugins.Quests.UpdateQuests() end,
         disabled  = function() return AIB.saved.account.Quests.alwaysOn end,
