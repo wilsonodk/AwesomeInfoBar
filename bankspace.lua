@@ -94,7 +94,6 @@ AIB.plugins["BankSpace"] = {
 
       -- set value
       local displayType = AIB.saved.account.BankSpace.displayType
-      AIB.Debug("DisplayType: "..displayType)
       if (displayType == "CUR") then
         value = cur
       elseif (displayType == "CUR / MAX") then
