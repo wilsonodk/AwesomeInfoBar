@@ -51,5 +51,8 @@ Displays unspent skill points.
 ### Soul Gems
 Displays the number of soul gems in your inventory.
 
+### Stolen
+Displays the count of stolen items in your inventory.
+
 ### Weapon Charge
 Displays a warning when a weapon needs to be charged.

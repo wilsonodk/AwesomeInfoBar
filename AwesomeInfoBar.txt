@@ -1,5 +1,5 @@
 ## APIVersion: 100028 100029
-## Version: 3.3.0
+## Version: 3.4.0
 ## Title: |cFF6060Awesome |cffffffInfo Bar|r
 ## Author: |cFF6060Keg|r and |c0055FFWilson|cFFFFFFODK|r
 ## Description: |cffa500Tracks attributes, skills, gold, soul gems, skyshards, horse training, durability, bag space, food buffs, quests, and enlightenment.|r
@@ -59,6 +59,9 @@ enlightenment.lua
 
 ## Plugin for bank space
 bankspace.lua
+
+## Plugin for stolen items
+stolen.lua
 
 ## The settings menu
 settings.lua
