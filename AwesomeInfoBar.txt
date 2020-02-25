@@ -1,4 +1,4 @@
-## APIVersion: 100028 100029
+## APIVersion: 100030 100031
 ## Version: 3.4.0
 ## Title: |cFF6060Awesome |cffffffInfo Bar|r
 ## Author: |cFF6060Keg|r and |c0055FFWilson|cFFFFFFODK|r
