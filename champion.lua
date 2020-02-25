@@ -5,9 +5,9 @@ AIB.icons["Champion"] = "|t38:38:esoui/art/treeicons/achievements_indexicon_cham
 
 local CHAMPION_ATTRIBUTE_HUD_ICONS =
 {
-    [ATTRIBUTE_HEALTH]  = "EsoUI/Art/Champion/champion_points_health_icon-HUD-32.dds",
-    [ATTRIBUTE_MAGICKA] = "EsoUI/Art/Champion/champion_points_magicka_icon-HUD-32.dds",
-    [ATTRIBUTE_STAMINA] = "EsoUI/Art/Champion/champion_points_stamina_icon-HUD-32.dds",
+    [ATTRIBUTE_HEALTH]  = "EsoUI/Art/Champion/champion_points_health_icon-HUD-32.dds",  -- 1
+    [ATTRIBUTE_MAGICKA] = "EsoUI/Art/Champion/champion_points_magicka_icon-HUD-32.dds", -- 2
+    [ATTRIBUTE_STAMINA] = "EsoUI/Art/Champion/champion_points_stamina_icon-HUD-32.dds", -- 3
 }
 
 ----------------------------------------------------
@@ -50,6 +50,13 @@ AIB.plugins["Champion"] = {
     end
   end,
 
+  ------------------------------------------------
+  -- METHOD: GetIcon
+  ------------------------------------------------
+  GetIcon = function(idx)
+    local _start, _end = "|t24:24:", "|t"
+    return _start..CHAMPION_ATTRIBUTE_HUD_ICONS[idx].._end
+  end,
 
   ------------------------------------------------
   -- METHOD: UpdateChampion
@@ -76,13 +83,13 @@ AIB.plugins["Champion"] = {
       if (AIB.saved.character.Champion.showSpent) then
         if (AIB.saved.character.Champion.onlyShowSpent) then
           if (pointsSpent < points) then
-            display = AI.colors.red..pointsSpent
+            display = AIB.colors.red..pointsSpent
           else
-            display = AI.colors.red..0
+            display = AIB.colors.red..0
           end
         else
           if (pointsSpent < points) then
-            display = AI.colors.red..pointsSpent.."|r/"..points
+            display = AIB.colors.red..pointsSpent.."|r/"..points
           else
             display = points
           end
@@ -103,9 +110,6 @@ AIB.plugins["Champion"] = {
       -- set value
       value = AIB.setValue(display, false, false)
 
-      -- set label
-      AIB.setLabel("Champion", header..value)
-
       -- set color
       local currentLevel = 0
       if CanUnitGainChampionPoints("player") then
@@ -119,9 +123,15 @@ AIB.plugins["Champion"] = {
       local nextPoint = GetChampionPointAttributeForRank(currentLevel)
       local color1 = ZO_CP_BAR_GRADIENT_COLORS[nextPoint][1]
       local color2 = ZO_CP_BAR_GRADIENT_COLORS[nextPoint][2]
+
+      AIB.icons.Champion = AIB.plugins.Champion.GetIcon(nextPoint)
+
+      -- set label
+      AIB.setLabel("Champion", header..value)
+
       AIB.setLabelColor("Champion", color2.r, color2.g, color2.b, color2.a)
     end
-    end,
+  end,
 
   ------------------------------------------------
   -- METHOD: GetPercent
