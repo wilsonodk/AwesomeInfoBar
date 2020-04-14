@@ -120,15 +120,13 @@ AIB.plugins["Champion"] = {
       if GetNumChampionXPInChampionPoint(currentLevel) ~= nil then
         currentLevel = currentLevel + 1
       end
+
       local nextPoint = GetChampionPointAttributeForRank(currentLevel)
       local color1 = ZO_CP_BAR_GRADIENT_COLORS[nextPoint][1]
       local color2 = ZO_CP_BAR_GRADIENT_COLORS[nextPoint][2]
 
-      AIB.icons.Champion = AIB.plugins.Champion.GetIcon(nextPoint)
-
       -- set label
       AIB.setLabel("Champion", header..value)
-
       AIB.setLabelColor("Champion", color2.r, color2.g, color2.b, color2.a)
     end
   end,
