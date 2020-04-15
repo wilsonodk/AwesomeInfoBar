@@ -63,6 +63,9 @@ bankspace.lua
 ## Plugin for stolen items
 stolen.lua
 
+## Plugin for poison count
+poisons.lua
+
 ## The settings menu
 settings.lua
 
