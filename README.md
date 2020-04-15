@@ -36,6 +36,9 @@ Displays the amount of gold in your inventory.
 ### Mount Training Timer
 Displays a timer of how long until you can train your mount.  Also can be set to only display when the timer expires.
 
+### Poisons
+Display the number of poison charges left on the active weapon.
+
 ### Quests
 Display the number of quests you have.
 
