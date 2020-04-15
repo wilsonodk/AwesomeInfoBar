@@ -487,7 +487,7 @@ end -- AIB.CheckSnoozeTimers
 -- METHOD: Debug
 --------------------------------------------------
 function AIB.Debug(msg)
-  CHAT_SYSTEM:AddMessage("AIB_Debug: "..msg)
+  CHAT_SYSTEM:AddMessage("AIB_Debug: "..AIB.colors.normal..msg.."|r")
 end
 
 ----------------------------------------------------
