@@ -18,7 +18,7 @@ AIB.defaults["Poisons"] = {
   on          = false,
   alwaysOn    = false,
   warning     = 10,
-  critial     = 5,
+  critical    = 5,
 }
 
 
@@ -89,7 +89,7 @@ AIB.plugins["Poisons"] = {
       local stackSize = AIB.plugins.Poisons.GetStackSize()
 
       if stackSize < AIB.saved.character.Poisons.warning then
-        if stackSize <= AIB.saved.character.Poisons.critial then
+        if stackSize <= AIB.saved.character.Poisons.critical then
           isCritical = true
         else
           isWarning = true
