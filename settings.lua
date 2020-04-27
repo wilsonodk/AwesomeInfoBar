@@ -1,3 +1,5 @@
+local LAM = LibAddonMenu2
+
 function AIB.CreateConfigMenu()
 
   ----------------------------------------------------
@@ -11,6 +13,11 @@ function AIB.CreateConfigMenu()
      author               = AIB.colors.red..AIB.author.."|r",
      version              = AIB.colors.green..AIB.version.."|r",
     }
+
+  ----------------------------------------------------
+  -- Register panel for Awesome Info Bar
+  ----------------------------------------------------
+  LAM:RegisterAddonPanel(AIB.displayName, AwesomeInfoBarPanel)
 
   ----------------------------------------------------
   -- Set up options info for Awesome InfoBar
@@ -174,5 +181,10 @@ function AIB.CreateConfigMenu()
       AwesomeInfoBarOptions = AIB.Merge(AwesomeInfoBarOptions, AIB.plugins[key].Menu)
     end
   end
+
+  ----------------------------------------------------
+  -- Register option controls for Awesome Info
+  ----------------------------------------------------
+  LAM:RegisterOptionControls(AIB.displayName, AwesomeInfoBarOptions)
 
 end -- AIB.CreateConfigMenu
