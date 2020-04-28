@@ -27,6 +27,9 @@ Displays a warning when an armor item falls below a specified threshold.
 ### Enlightenment
 Show how much enlightenment you have.
 
+### Experience Buff Timer
+Displays a timer for any increased experience scroll.
+
 ### Food & Drink Buff Timer
 Displays a timer of how long until the food or drink buff runs out.  Also can be set to only display when a buff is missing.
 
