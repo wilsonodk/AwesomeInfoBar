@@ -26,7 +26,6 @@ AIB.plugins["Bags"] = {
   -- PARENT METHOD: Initialize
   ------------------------------------------------
   Initialize = function()
-    AIB.Debug("Bags.Initialize")
     AIB.plugins.Bags.UpdateBags()
   end,
 
