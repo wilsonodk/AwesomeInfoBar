@@ -483,11 +483,43 @@ function AIB.CheckSnoozeTimers()
   end
 end -- AIB.CheckSnoozeTimers
 
+------------------------------------------------
+-- METHOD: GetTimeLeft
+------------------------------------------------
+function AIB.GetTimeLeft(timeEndingInMS)
+  local timer = math.max(zo_roundToNearest(timeEndingInMS - GetGameTimeMilliseconds() / 1000, 1), 0)
+
+  if timer > 0 then
+    timer = math.floor(timer / 60)
+  end
+
+  return timer
+end
+
+------------------------------------------------
+-- METHOD: GetTimerDisplay
+------------------------------------------------
+function AIB.GetTimerDisplay(timer)
+  local hrs, mins = 0, 0
+  local out
+
+  if timer > 60 then
+    hrs = math.floor(timer / 60)
+    mins = timer % 60
+
+    out = hrs.."h "..mins.."m"
+  else
+    out = timer.."m"
+  end
+
+  return out
+end
+
 --------------------------------------------------
 -- METHOD: Debug
 --------------------------------------------------
 function AIB.Debug(msg)
-  CHAT_SYSTEM:AddMessage("AIB_Debug: "..AIB.colors.normal..msg.."|r")
+  CHAT_SYSTEM:AddMessage("AIB_Debug: "..msg)
 end
 
 ----------------------------------------------------
