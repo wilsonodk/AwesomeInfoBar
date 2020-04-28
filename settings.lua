@@ -1,4 +1,4 @@
-local LAM = LibStub("LibAddonMenu-2.0")
+local LAM = LibAddonMenu2
 
 function AIB.CreateConfigMenu()
 
@@ -181,10 +181,10 @@ function AIB.CreateConfigMenu()
       AwesomeInfoBarOptions = AIB.Merge(AwesomeInfoBarOptions, AIB.plugins[key].Menu)
     end
   end
+
   ----------------------------------------------------
   -- Register option controls for Awesome Info
   ----------------------------------------------------
   LAM:RegisterOptionControls(AIB.displayName, AwesomeInfoBarOptions)
-
 
 end -- AIB.CreateConfigMenu
