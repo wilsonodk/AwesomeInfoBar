@@ -1,5 +1,5 @@
 ## APIVersion: 100030 100031
-## Version: 3.5.0
+## Version: 3.6.0
 ## Title: |cFF6060Awesome |cffffffInfo Bar|r
 ## Author: |cFF6060Keg|r and |c0055FFWilsonODK|r
 ## Description: |cffa500Tracks attributes, skills, gold, soul gems, skyshards, horse training, durability, bag space, food buffs, quests, and enlightenment.|r
