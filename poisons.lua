@@ -2,10 +2,6 @@
 -------------------------------------------------
 -- ICONS
 -------------------------------------------------
--- art\icons\crowncrate_poison_001.dds
--- art\icons\green_poison_vial.dds
--- esoui\art\actionbar\stateoverlay_poison.dds
--- esoui\art\tooltips\icon_poison.dds
 AIB.icons["Poisons"]          = "|t22:22:esoui/art/tooltips/icon_poison.dds|t"
 AIB.icons["PoisonsWarning"]   = "|t22:22:esoui/art/tooltips/icon_poison.dds|t"
 AIB.icons["PoisonsCritical"]  = "|t22:22:esoui/art/tooltips/icon_poison.dds|t"
@@ -21,6 +17,13 @@ AIB.defaults["Poisons"] = {
   critical    = 5,
 }
 
+----------------------------------------------------
+-- LOCAL VARS
+----------------------------------------------------
+AIB.vars["Poisons"] = {
+  lastUpdate  = 0,
+  frequency   = 10
+}
 
 -------------------------------------------------
 -- METHODS CALL FROM PARENT
@@ -31,49 +34,23 @@ AIB.plugins["Poisons"] = {
   -- PARENT METHOD: Initialize
   -----------------------------------------------
   Initialize = function()
-    if (AIB.saved.character.Poisons == nil) then
+    if AIB.saved.character.Poisons == nil then
       AIB.saved.character.Poisons = AIB.defaults.Poisons
     end
     AIB.plugins.Poisons.UpdatePoisons()
   end,
 
   -----------------------------------------------
-  -- PARENT METHOD: RegisterEvents
+  -- PARENT METHOD: Update (every 1 sec)
   -----------------------------------------------
-  RegisterEvents = function()
-    if (AIB.saved.character.Research.on) then
-      -- setup
-      EVENT_MANAGER:RegisterForEvent("AIB_Poisons", EVENT_PLAYER_ACTIVATED, AIB.plugins.Poisons.UpdatePoisons)
-      -- poison proc'd
-      EVENT_MANAGER:RegisterForEvent("AIB_Poisons", EVENT_INVENTORY_SINGLE_SLOT_UPDATE, AIB.plugins.Poisons.OnSlotUpdate)
-      -- weapons updated
-      EVENT_MANAGER:RegisterForEvent("AIB_Poisons", EVENT_ACTIVE_WEAPON_PAIR_CHANGED, AIB.plugins.Poisons.OnWeaponChange)
-      -- switched bars
-      EVENT_MANAGER:RegisterForEvent("AIB_Poisons", EVENT_ACTION_SLOTS_FULL_UPDATE, AIB.plugins.Poisons.OnBarSwitch)
-    else
-      EVENT_MANAGER:UnregisterForEvent("AIB_Poisons", EVENT_PLAYER_ACTIVATED)
-      EVENT_MANAGER:UnregisterForEvent("AIB_Poisons", EVENT_INVENTORY_SINGLE_SLOT_UPDATE)
-      EVENT_MANAGER:UnregisterForEvent("AIB_Poisons", EVENT_ACTIVE_WEAPON_PAIR_CHANGED)
-      EVENT_MANAGER:UnregisterForEvent("AIB_Poisons", EVENT_ACTION_SLOTS_FULL_UPDATE)
+  Update = function()
+    if AIB.saved.character.Poisons.on then
+      AIB.vars.Poisons.lastUpdate = AIB.vars.Poisons.lastUpdate + 1
+      if (AIB.vars.Poisons.lastUpdate > AIB.vars.Poisons.frequency) then
+        AIB.vars.Poisons.lastUpdate = 0
+        AIB.plugins.Poisons.UpdatePoisons()
+      end
     end
-  end,
-
-  -----------------------------------------------
-  -- HELPER METHOD: GetStackSize
-  -----------------------------------------------
-  GetStackSize = function()
-    local weaponPair = GetActiveWeaponPairInfo()
-    local equipSlot, stackSize
-
-    if (weaponPair == ACTIVE_WEAPON_PAIR_MAIN) then
-      equipSlot = EQUIP_SLOT_MAIN_HAND
-    else
-      equipSlot = EQUIP_SLOT_BACKUP_MAIN
-    end
-
-    _, stackSize = GetItemPairedPoisonInfo(equipSlot)
-
-    return stackSize
   end,
 
   -----------------------------------------------
@@ -110,32 +87,21 @@ AIB.plugins["Poisons"] = {
   end,
 
   -----------------------------------------------
-  -- EVENT: OnSlotUpdate
+  -- HELPER METHOD: GetStackSize
   -----------------------------------------------
-  OnSlotUpdate = function(eventCode, bagId, slotId, isNewItem, itemSoundCategory, inventoryUpdateReason, stackSizeChange)
-    if bagId == 0 and stackSizeChange == -1 then
-      AIB.plugins.Poisons.UpdatePoisons()
-    end
-  end,
-
-  -----------------------------------------------
-  -- EVENT: OnWeaponChange
-  -----------------------------------------------
-  OnWeaponChange = function(eventCode, activeWeaponPair, locked)
+  GetStackSize = function()
     local weaponPair = GetActiveWeaponPairInfo()
+    local equipSlot, stackSize
 
-    if weaponPair == activeWeaponPair then
-      AIB.plugins.Poisons.UpdatePoisons()
+    if weaponPair == ACTIVE_WEAPON_PAIR_MAIN then
+      equipSlot = EQUIP_SLOT_MAIN_HAND
+    else
+      equipSlot = EQUIP_SLOT_BACKUP_MAIN
     end
-  end,
 
-  -----------------------------------------------
-  -- EVENT: OnBarSwitch
-  -----------------------------------------------
-  OnBarSwitch = function(eventCode, isHotbarSwap)
-    if isHotbarSwap then
-      AIB.plugins.Poisons.UpdatePoisons()
-    end
+    _, stackSize = GetItemPairedPoisonInfo(equipSlot)
+
+    return stackSize
   end,
 
 }
