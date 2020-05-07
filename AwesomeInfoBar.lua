@@ -3,8 +3,8 @@ AIB = {}
 -- addon info
 AIB.name        = "AwesomeInfoBar"    -- Top Level Control Name / Addon Name
 AIB.displayName = "|cFF6060Awesome |cffffffInfoBar|r"    -- Menu Display
-AIB.version     = "3.2"
-AIB.author      = "Keg"
+AIB.version     = "3.6.1"
+AIB.author      = "Keg and wilsonodk"
 AIB.Initialized = false
 AIB.moving      = false
 
