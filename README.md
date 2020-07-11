@@ -36,6 +36,9 @@ Displays a timer of how long until the food or drink buff runs out.  Also can be
 ### Gold
 Displays the amount of gold in your inventory.
 
+### Mail
+Displays a count of unread mail.
+
 ### Mount Training Timer
 Displays a timer of how long until you can train your mount.  Also can be set to only display when the timer expires.
 
