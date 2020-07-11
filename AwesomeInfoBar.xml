@@ -84,6 +84,11 @@
             AIB.OnMouseUp(self, button, upInside)
           </OnMouseUp>
         </Label>
+        <Label name="$(parent)LabelMail"  font="ZoFontWinH5" color="FFFFFF" inheritAlpha="true" wrapMode="TRUNCATE" verticalAlignment="TOP" text="" mouseEnabled="true" >
+          <OnMouseUp>
+            AIB.OnMouseUp(self, button, upInside)
+          </OnMouseUp>
+        </Label>
         <Label name="$(parent)LabelMount"  font="ZoFontWinH5" color="FFFFFF" inheritAlpha="true" wrapMode="TRUNCATE" verticalAlignment="TOP" text="" mouseEnabled="true" >
           <OnMouseUp>
             AIB.OnMouseUp(self, button, upInside)
