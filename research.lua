@@ -99,7 +99,7 @@ AIB.plugins["Research"] = {
       header = AIB.setHeader("Research",isWarning,isCritical)
 
       -- determine value
-      local valueToUse = activeSlots
+      local displayValue = activeSlots
       if (AIB.saved.character.Research.displayType == "ACTIVE / MAX") then
           displayValue = activeSlots.."/"..maxSlots
       elseif (AIB.saved.character.Research.displayType == "INACTIVE") then
