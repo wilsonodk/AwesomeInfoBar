@@ -121,7 +121,7 @@ AIB.plugins["Champion"] = {
         currentLevel = currentLevel + 1
       end
 
-      local nextPoint = GetChampionPointAttributeForRank(currentLevel)
+      local nextPoint = GetChampionPointPoolForRank(currentLevel)
       local color1 = ZO_CP_BAR_GRADIENT_COLORS[nextPoint][1]
       local color2 = ZO_CP_BAR_GRADIENT_COLORS[nextPoint][2]
 
