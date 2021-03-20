@@ -63,14 +63,18 @@ AIB.plugins["Poisons"] = {
     if (AIB.saved.character.Poisons.on and not snoozing) then
       local header, value = "", ""
       local isWarning, isCritical = false, false
-      local stackSize = AIB.plugins.Poisons.GetStackSize()
+      local hasPoison, stackSize = AIB.plugins.Poisons.GetStackSize()
 
-      if stackSize < AIB.saved.character.Poisons.warning then
-        if stackSize <= AIB.saved.character.Poisons.critical then
-          isCritical = true
-        else
-          isWarning = true
+      if hasPoison then
+        if stackSize < AIB.saved.character.Poisons.warning then
+          if stackSize <= AIB.saved.character.Poisons.critical then
+            isCritical = true
+          else
+            isWarning = true
+          end
         end
+      else
+        stackSize = 'na'
       end
 
       -- set header
@@ -79,7 +83,7 @@ AIB.plugins["Poisons"] = {
       value = AIB.setValue(stackSize, isWarning, isCritical)
 
       -- set label
-      if ((not AIB.saved.character.Poisons.alwaysOn and (isWarning or isCritical))
+      if ((not AIB.saved.character.Poisons.alwaysOn and (isWarning or isCritical) and (stackSize ~= 'na'))
         or (AIB.saved.character.Poisons.alwaysOn)) then
         AIB.setLabel("Poisons", header..value)
       end
@@ -99,9 +103,7 @@ AIB.plugins["Poisons"] = {
       equipSlot = EQUIP_SLOT_BACKUP_MAIN
     end
 
-    _, stackSize = GetItemPairedPoisonInfo(equipSlot)
-
-    return stackSize
+    return GetItemPairedPoisonInfo(equipSlot)
   end,
 
 }
